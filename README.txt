@@ -5,11 +5,12 @@ outputs are preserved from the run saved on 17 October 2026. The original run
 time and environment are in evidence/verification.json.
 
 CODE AND SOURCE OWNERSHIP
-source/author_experiment1.py is the author's original Experiment 1 script,
+author_source/author_experiment1.py is the author's original Experiment 1 script,
 preserved unchanged. Its original repository filename is 实验一.py.
-reproduce.py is the project-added reproduction and validation wrapper. It runs
-the author script, suppresses interactive plot windows, exports data, checks
-independent solutions and published curves, and performs the alpha sweep.
+replication/reproduce.py is the project-added reproduction and validation code.
+It runs the author script, suppresses interactive plot windows, exports data,
+checks independent solutions and published curves, and performs the alpha sweep.
+The root reproduce.py only launches this project implementation.
 The author repository is the source of the preserved original simulation.
 The project wrapper and saved validation results are supplied in this package.
 
@@ -18,7 +19,7 @@ Paper: Fangyuan Li (2026), Equilibrium Drift Restriction: A Control Strategy
 for Reducing Steady-State Error Under System Inconsistency, Mathematical and
 Computational Applications 31(1), 11.
 DOI: https://doi.org/10.3390/mca31010011
-The published paper is included as source/EDR_published_paper.pdf (CC BY 4.0).
+The published paper is included as author_source/EDR_published_paper.pdf (CC BY 4.0).
 
 RUN WITH PYTHON 3.12
 Extract the ZIP, open a terminal in this folder, and run:

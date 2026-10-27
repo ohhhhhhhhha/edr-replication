@@ -6,7 +6,8 @@ Steady-State Error Under System Inconsistency*.
 
 ## Start here
 
-- [Project reproduction and validation code](reproduce.py)
+- [项目复现与验证代码 / Project implementation](replication/reproduce.py)
+- [作者原始源码 / Original author code](author_source/author_experiment1.py)
 - [Download the checkpoint 2 code and evidence ZIP](downloads/EDR_Checkpoint_2_Code_and_Evidence.zip)
 - [Six-case numerical results](evidence/metrics.csv)
 - [Run metadata and validation checks](evidence/verification.json)
@@ -17,17 +18,21 @@ on 27 October 2026 reproduced the metrics, alpha-sweep summaries and published
 curve comparisons exactly in the existing Python environment. Installation in
 a fresh environment remains to be checked.
 
-## What the project adds
+## Code ownership / 代码归属
 
-`source/author_experiment1.py` is the author's original simulation, preserved
-unchanged. `reproduce.py` is the project-added wrapper. It runs that simulation,
-exports and reloads the trajectories, checks them against a separate DOP853
-integration and closed-form solutions, compares published PDF curves, and
-evaluates four values of the EDR parameter.
+| Location | Ownership and purpose |
+| --- | --- |
+| [`replication/reproduce.py`](replication/reproduce.py) | Project-added reproduction and validation: independent DOP853 integration, closed-form solutions, exported data, paper-curve comparison and the alpha sweep. |
+| [`author_source/`](author_source/) | Fangyuan Li's original simulation script and published paper. The script is preserved unchanged. |
+| [`reproduce.py`](reproduce.py) | Short launcher for the project implementation; keeps the root-level run command convenient. |
 
-The [author's source repository](https://github.com/fylimas/EDR) and the
-[published paper](https://doi.org/10.3390/mca31010011) are source references.
-The wrapper, exported results and validation records can be inspected here.
+The project script executes the original simulation as its baseline, then checks
+its trajectories with a separately implemented state equation and closed-form
+solution. Brief comments and progress messages explain the validation steps.
+The model equations, solver settings and numerical checks are unchanged.
+
+The [author's repository](https://github.com/fylimas/EDR) and
+[published paper](https://doi.org/10.3390/mca31010011) provide the source material.
 
 ## Reproduce the results
 
