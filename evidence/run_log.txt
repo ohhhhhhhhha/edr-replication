@@ -1,0 +1,52 @@
+source/author_experiment1.py:74: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min[0,:], label='$\hat{\omega}_0=0.5$')
+source/author_experiment1.py:75: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max[0,:], label='$\hat{\omega}_0=1.5$')
+source/author_experiment1.py:90: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min[1,:], label='$\hat{\omega}_0=0.5$')
+source/author_experiment1.py:91: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max[1,:], label='$\hat{\omega}_0=1.5$')
+source/author_experiment1.py:106: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min_n[0,:], label='Var. Ref., $\hat{\omega}_0=0.5$')
+source/author_experiment1.py:107: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max_n[0,:], label='$Var. Ref., \hat{\omega}_0=1.5$')
+source/author_experiment1.py:108: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min[0,:], label='Con. Ref., $\hat{\omega}_0=0.5$', linestyle='--')
+source/author_experiment1.py:109: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max[0,:], label='Con. Ref., $\hat{\omega}_0=1.5$', linestyle='--')
+source/author_experiment1.py:125: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min_n[1,:], label='Var. Ref., $\hat{\omega}_0=0.5$')
+source/author_experiment1.py:126: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max_n[1,:], label='Var. Ref., $\hat{\omega}_0=1.5$')
+source/author_experiment1.py:127: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_min[1,:], label='Con. Ref., $\hat{\omega}_0=0.5$', linestyle='--')
+source/author_experiment1.py:128: SyntaxWarning: invalid escape sequence '\h'
+  plt.plot(参变t, 参变x_max[1,:], label='Con. Ref., $\hat{\omega}_0=1.5$', linestyle='--')
+{
+  "run_utc": "2026-10-17T14:57:59.033945+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.3",
+    "control": "0.10.2",
+    "pdfplumber": "0.11.9"
+  },
+  "source_sha256": "de11b3a7bf154134e443e450f884649f49cbe113a6dc18b7cb8a9e537cc12e82",
+  "source_git_blob": "8a8e4c5e5fc6c27efba99fae3094e3cf53d77233",
+  "paper_sha256": "5588dd7ec3a9f206d385841fc53fec0d9387e9bfa06d43f9daa806e57c3e7f22",
+  "author_plot_count": 6,
+  "exported_trajectory_rows": 6000,
+  "main_cases": 6,
+  "extension_cases": 12,
+  "max_state_difference_ode": 1.5530754460257867e-10,
+  "max_state_difference_exact": 2.230854390106174e-14,
+  "max_equilibrium_check_30s": 1.6653345369377348e-14,
+  "paper_vector_vertices": 715,
+  "max_published_position_difference": 9.127358147065223e-09,
+  "max_published_velocity_difference": 4.281156551488863e-08,
+  "numerical_tolerance": 1e-06,
+  "paper_comparison_note": "Differences at PDF polyline vertices include plot simplification/coordinate quantization; they are not raw-data errors."
+}
+All six baseline cases, 12 sweep cases, export/reload and independent numerical checks passed.
