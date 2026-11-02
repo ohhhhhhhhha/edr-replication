@@ -1,8 +1,8 @@
-"""Project reproduction and independent validation of EDR Figures 2 and 3.
+"""Route A: rerun author code, with historical analytical and PDF checks.
 
-Run: python reproduce.py [--extra-deps PATH]
-The author baseline is executed unchanged from author_source/. This project
-script adds the independent model, closed-form checks, data export and alpha sweep.
+Run: python replication/author_rerun.py [--extra-deps PATH]
+This script executes the preserved author implementation. The standalone
+equation-based reconstruction is independent_model.py (the default entry point).
 """
 import argparse
 import csv

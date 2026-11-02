@@ -1,128 +1,118 @@
-# EDR replication and validation
+# EDR reproduction and equation-based reconstruction
 
-Code and evidence for reproducing the linear pendulum example in Fangyuan Li's
-2026 paper, *Equilibrium Drift Restriction: A Control Strategy for Reducing
-Steady-State Error Under System Inconsistency*.
+**Group Ctrl_4 | EEEN3015J Control Theory | Final report, Section A**
+
+This project studies the linear pendulum example in Fangyuan Li's 2026 paper
+*Equilibrium Drift Restriction: A Control Strategy for Reducing Steady-State
+Error Under System Inconsistency*. It separates author-code re-execution,
+equation-based modelling and published-graphic comparisons.
 
 ## Start here
 
-- [项目复现与验证代码 / Project implementation](replication/reproduce.py)
-- [作者原始源码 / Original author code](author_source/author_experiment1.py)
-- [Download the final Section A code and evidence ZIP](downloads/EDR_Section_A_Code_and_Evidence.zip)
-- [Checkpoint 2 evidence snapshot](downloads/EDR_Checkpoint_2_Code_and_Evidence.zip)
-- [Completed Figure 7 reproduction](replication/sensitivity_figure7.py)
-- [Six-case numerical results](evidence/metrics.csv)
-- [Run metadata and validation checks](evidence/verification.json)
-- [Detailed file guide](README.txt)
+- [Primary equation-based implementation](replication/independent_model.py)
+- [Independent trajectories and verification](evidence/independent/)
+- [Post-generation comparisons](evidence/comparison/)
+- [Final Section A code and evidence ZIP](downloads/EDR_Section_A_Code_and_Evidence.zip)
+- [Original author source](author_source/)
 
-The saved experiment ran on 17 October 2026. A run from the extracted package
-on 27 October 2026 reproduced the metrics, alpha-sweep summaries and published
-curve comparisons exactly in the existing Python environment. Installation in
-a fresh environment remains to be checked.
+## Evidence provenance
 
-## Code ownership / 代码归属
+| Route | Code and inputs | What it establishes |
+| --- | --- | --- |
+| A: author re-execution | [Author rerun wrapper](replication/author_rerun.py) executes the original script. [Sensitivity audit](replication/author_sensitivity_audit.py) executes the original Figure 7 script. | Reproducibility of the supplied software and its outputs. |
+| B: standalone model | [Independent model](replication/independent_model.py) implements the plant and controller equations. It reads no author scripts, PDFs or existing comparison results. | Computational reconstruction and numerical verification of the stated model. |
+| C: graphic audit | PDF vector coordinates saved in the comparison evidence. | Consistency with the published drawing, not an independent dataset. |
 
-| Location | Ownership and purpose |
-| --- | --- |
-| [`replication/reproduce.py`](replication/reproduce.py) | Project-added reproduction and validation: independent DOP853 integration, closed-form solutions, exported data, paper-curve comparison and the alpha sweep. |
-| [`author_source/`](author_source/) | Fangyuan Li's original experiment scripts and published paper. The scripts are preserved unchanged. |
-| [`reproduce.py`](reproduce.py) | Short launcher for the project implementation; keeps the root-level run command convenient. |
+A and C share the author's computational lineage. Very small differences
+between them are expected and are not presented as independent replication.
+B was developed after access to the paper and source. Its independence is in
+its executable implementation and calculation, not a blinded development
+process or new physical experiment. Model assumptions and settings remain shared.
 
-The project script executes the original simulation as its baseline, then checks
-its trajectories with a separately implemented state equation and closed-form
-solution. Brief comments and progress messages explain the validation steps.
-The model equations, solver settings and numerical checks are unchanged.
+## Run the primary model
 
-The [author's repository](https://github.com/fylimas/EDR) and
-[published paper](https://doi.org/10.3390/mca31010011) provide the source material.
-
-## Reproduce the results
-
-Use Python 3.12. From the repository root or extracted evidence folder, run:
+Use Python 3.12 from the repository root:
 
 ```sh
 python -m pip install -r requirements.txt
 python reproduce.py
 ```
 
-The pinned dependencies are in `requirements.txt`. No external dataset,
-training or random seed is required. The script overwrites generated files
-under `evidence/`; use a copy to retain the supplied outputs. The original
-source files remain unchanged.
-
-Expected outputs are six main cases, 6000 finite trajectory rows, six original
-author figures, 12 alpha-sweep cases and comparisons at 715 drawing vertices
-from 12 published curves. Assertions check the numerical differences and data
-export/reload. The original plot-label escapes can produce harmless
-`SyntaxWarning` messages on Python 3.12; these are recorded in the run log.
-
-## Final Section A additions
-
-The Figure 7 sensitivity reproduction was completed on 2 November 2026. It uses
-50 alpha values from 0 to 25 and the frequency intervals [0.5, 1.5] and [0.1, 1.9].
-The 200 endpoint simulations agree with independent integration and analytical
-solutions. All 100 extracted drawing vertices are compared, with a maximum
-width difference of approximately 1.41e-8 rad.
-
-The original script plots the difference between the two endpoint-frequency
-outputs at 5 s. This finite-time spread differs from both the equilibrium
-spread and the worst reference error. At alpha = 0, it underestimates the
-true equilibrium spread by 1.50% and 1.81% for the two frequency intervals.
-
-Run the additional analyses after installing the same requirements:
+The default entry point runs **B only**. It writes to `evidence/independent/`,
+leaving the archived A/C reference outputs separate. The model can also run alone:
 
 ```sh
-python replication/sensitivity_figure7.py
+python replication/independent_model.py --output-dir my_results
+```
+
+The script computes controller input and plant derivative separately, integrates
+with DOP853, and exports its own trajectories, metrics and plots. It covers six
+main cases, twelve gain-variation cases and 200 Figure 7 endpoint calculations.
+Checks cover an analytical solution, RK45 agreement, tighter solver tolerances
+and two cases with changed references and nonzero initial states.
+
+On 2 November 2026, B ran in a separate directory containing only the new model
+script and numerical-library dependencies. Author files, PDF and saved reference
+outputs were absent. Its checks passed the numerical target of 1e-6. The environment
+and results are in the [independent verification record](evidence/independent/verification.json).
+
+## Compare after model generation
+
+```sh
+python replication/compare_evidence.py
 python replication/design_analysis.py
 ```
 
-The design analysis examines illustrative error, overshoot and input targets.
-It is an analytical extension; no saturation simulation is claimed.
+The comparison script reads completed B results and archived A/C outputs.
+It does not change parameters or execute author code. The design analysis
+evaluates explicitly illustrative error, overshoot and input targets.
 
-![Figure 7 reproduction and finite-horizon bias](evidence/figure7_replication.png)
+To rerun the original-author routes separately:
 
-## Replicated outputs
+```sh
+python replication/author_rerun.py
+python replication/author_sensitivity_audit.py
+```
 
-![Rerun position and velocity responses for the nominal and mismatched plants](evidence/replicated_figures_2_3.png)
+These commands execute the author implementation and regenerate A/C artifacts.
+They are not required to generate B results.
 
-The main runs use a 1 rad reference, zero initial states, 1000 output times
-from 0 to 5 s, frequencies 0.5, 1.0 and 1.5 rad/s, and alpha values 0 and 2.
+## Main results from B
 
-| Frequency (rad/s) | Baseline steady error | EDR steady error |
+![Standalone equation-based model responses](evidence/independent/main_responses.png)
+
+The model uses a 1 rad reference, zero initial states, 1000 output times from
+0 to 5 s, frequencies 0.5, 1.0 and 1.5 rad/s, and alpha values 0 and 2.
+Analytical equilibria, corroborated by B, give the following steady errors:
+
+| Frequency (rad/s) | Baseline | EDR, alpha = 2 |
 | --- | ---: | ---: |
 | 0.5 | 23.08% | 10.34% |
 | 1.0 | 0.00% | 0.00% |
 | 1.5 | 23.81% | 13.51% |
 
-Steady errors use analytical equilibria and are distinct from the 5 s
-endpoints. The worst error decreases by 43.24% relative to baseline. Sampled
-peak input increases from 4 to 8 model units, and nominal overshoot increases
-from 0% to 4.32%.
+The gain variation quantifies the tradeoff with nominal overshoot and input.
+The Figure 7 calculation distinguishes the 5 s endpoint-frequency spread from
+the true equilibrium spread and worst reference error. The report labels the
+independent model outputs and original-code/drawing comparisons separately.
 
-## Evidence map
+## Files and ownership
 
-| Result | Files |
-| --- | --- |
-| Main replicated figure | `evidence/replicated_figures_2_3.png`, `evidence/trajectories.csv` |
-| Six-case results and independent checks | `evidence/metrics.csv`, `evidence/verification.json` |
-| Published figure comparison | `evidence/published_vector_points.csv`, `evidence/published_figure_comparison.csv` |
-| Parameter variation | `evidence/alpha_sweep.csv`, `evidence/alpha_sweep_trajectories.csv`, `evidence/alpha_tradeoff.png` |
-| Original simulation outputs | `evidence/author_figures/` |
-| Console output | `evidence/run_log.txt` |
-| Figure 7 reproduction | `evidence/figure7_sensitivity.csv`, `evidence/figure7_published_points.csv`, `evidence/figure7_verification.json` |
-| Selected sensitivity measures | `evidence/figure7_selected_metrics.csv` |
-| Analytical design extension | `evidence/design_constraints.json`, `evidence/analytical_sensitivity.csv` |
-
-The published comparison uses PDF drawing vertices against the closed-form
-solution at their extracted times. It does not provide the author's original
-raw samples or physical experimental accuracy. The model is linear and
-unsaturated; hardware, noise, delays, Q-learning and MIMO results are outside
-this replication.
+- `replication/independent_model.py`: primary project equation implementation.
+- `replication/compare_evidence.py`: separate A/B/C comparison stage.
+- `replication/author_rerun.py`, `replication/author_sensitivity_audit.py`: project wrappers for original-author execution and graphic audits.
+- `replication/design_analysis.py`: analytical design extension.
+- `author_source/`: unchanged author scripts and published paper.
+- `evidence/independent/`: B outputs and numerical checks.
+- `evidence/comparison/`: explicitly labelled cross-source results.
+- Files directly under `evidence/`: archived author-route, graphic-audit and earlier extension outputs.
 
 ## Sources
 
 F. Li (2026), *Mathematical and Computational Applications*, 31(1), 11.
-DOI: [10.3390/mca31010011](https://doi.org/10.3390/mca31010011).
+[Paper DOI](https://doi.org/10.3390/mca31010011) |
+[Author repository](https://github.com/fylimas/EDR).
 
-The included paper is distributed under CC BY 4.0. The original simulation
-retains its attribution to the author and its original source terms.
+The included paper is CC BY 4.0. Original scripts retain the author's attribution
+and source terms. The checkpoint 2 archive is retained as an
+[earlier snapshot](downloads/EDR_Checkpoint_2_Code_and_Evidence.zip).

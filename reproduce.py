@@ -1,7 +1,5 @@
-"""Run the project implementation in replication/reproduce.py."""
-from pathlib import Path
-import runpy
+"""Run the standalone equation-based model, without author code or PDF inputs."""
+from replication.independent_model import main
 
 if __name__ == '__main__':
-    runpy.run_path(str(Path(__file__).resolve().parent / 'replication' / 'reproduce.py'),
-                   run_name='__main__')
+    main()

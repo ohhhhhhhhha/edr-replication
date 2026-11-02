@@ -1,0 +1,12 @@
+{
+  "A": "Author-code rerun; archived outputs from executing the original programs.",
+  "B": "Standalone equation-based reconstruction; generated without A or C inputs.",
+  "C": "Coordinates extracted from published PDF vector paths; artifact audit only.",
+  "dependency_note": "A and C share the author computational lineage. B shares the published model/settings and was developed with source access; it is not blinded or physical validation.",
+  "comparison_performed_after_B_outputs": true,
+  "max_position_B_minus_A": 2.975519830528128e-11,
+  "max_velocity_B_minus_A": 1.528506210490832e-10,
+  "max_input_B_minus_A": 4.4417802769203263e-10,
+  "figure7_max_B_minus_A": 6.483702463810914e-14,
+  "figure7_max_B_minus_C": 1.3493358652638676e-08
+}

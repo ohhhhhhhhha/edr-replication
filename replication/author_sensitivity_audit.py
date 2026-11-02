@@ -1,6 +1,7 @@
-"""Reproduce Figure 7 and distinguish finite-time spread from steady error.
+"""Routes A/C: rerun the author Figure 7 script and audit PDF vector paths.
 
-Run from the repository root: python replication/sensitivity_figure7.py
+Run from the repository root: python replication/author_sensitivity_audit.py
+The independent Figure 7 calculation is part of independent_model.py.
 """
 from pathlib import Path
 import argparse

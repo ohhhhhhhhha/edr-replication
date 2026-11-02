@@ -10,5 +10,7 @@ originally named `实验二.py`. It produces the sensitivity curves in Figure 7.
 `EDR_published_paper.pdf` is the published paper, distributed under CC BY 4.0:
 [doi:10.3390/mca31010011](https://doi.org/10.3390/mca31010011).
 
-The project's reproduction and validation implementation is in
-[`replication/reproduce.py`](../replication/reproduce.py).
+The project's standalone equation-based implementation is in
+[`replication/independent_model.py`](../replication/independent_model.py).
+The separate [author rerun wrapper](../replication/author_rerun.py) executes
+the original Experiment 1 for comparison.
