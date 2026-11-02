@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-11-02T12:50:30.677231+00:00",
+  "passed": true,
+  "entry_point": "python reproduce.py --output-dir outputs",
+  "initial_working_directory_files": [
+    "replication/independent_model.py",
+    "reproduce.py"
+  ],
+  "author_scripts_present": false,
+  "pdf_present": false,
+  "reference_results_present": false,
+  "child_exit_code": 0,
+  "matching_csv_files": [
+    "additional_checks.csv",
+    "alpha_sweep.csv",
+    "alpha_sweep_trajectories.csv",
+    "figure7_sensitivity.csv",
+    "metrics.csv",
+    "trajectories.csv"
+  ],
+  "comparison_timing": "Parent compares results only after the isolated child exits.",
+  "environment": "Existing installed numerical libraries; this is execution isolation, not a clean dependency installation."
+}

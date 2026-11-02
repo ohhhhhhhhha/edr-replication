@@ -35,6 +35,9 @@ The six main B cases generate 6000 trajectory rows. The alpha extension has
 calculations. verification.json records analytical, RK45 and tighter-tolerance
 checks, plus changed-reference/nonzero-initial-state cases. A separate execution
 test on 2 November 2026 ran B without author files, PDFs or saved reference data.
+Repeat that check with python replication/verify_standalone_execution.py.
+It copies only the project launcher and model into a fresh working directory;
+the parent compares CSV outputs after the child process has exited.
 
 PROVENANCE
 Main archived A outputs were recorded on 17 October 2026. The Figure 7 audit

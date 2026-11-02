@@ -51,10 +51,16 @@ main cases, twelve gain-variation cases and 200 Figure 7 endpoint calculations.
 Checks cover an analytical solution, RK45 agreement, tighter solver tolerances
 and two cases with changed references and nonzero initial states.
 
-On 2 November 2026, B ran in a separate directory containing only the new model
-script and numerical-library dependencies. Author files, PDF and saved reference
+On 2 November 2026, B ran in a separate directory containing only the project
+launcher/model scripts and numerical-library dependencies. Author files, PDF and saved reference
 outputs were absent. Its checks passed the numerical target of 1e-6. The environment
 and results are in the [independent verification record](evidence/independent/verification.json).
+
+The default entry-point isolation check is repeatable with
+`python replication/verify_standalone_execution.py`; it creates a temporary
+directory containing only the launcher and model, runs there, and compares
+outputs after the isolated process exits. See the
+[execution check record](evidence/independent/execution_check.json).
 
 ## Compare after model generation
 
