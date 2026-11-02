@@ -1,0 +1,46 @@
+{
+  "illustrative_specs_not_paper_requirements": true,
+  "scope": "Constant unit step, zero state, fixed velocity-feedback coefficient 4, nonnegative alpha, linear unsaturated plant.",
+  "target_worst_error_percent": 10,
+  "target_nominal_overshoot_percent": 5,
+  "target_initial_input_limit": 10,
+  "min_alpha_for_10pct_error": 2.692582403567252,
+  "max_alpha_for_5pct_overshoot": 2.0973787820249776,
+  "max_alpha_from_initial_input_limit": 2.449489742783178,
+  "min_initial_input_for_10pct_error": 11.25,
+  "nominal_overshoot_at_min_error_gain_percent": 9.695421318970688,
+  "min_alpha_for_15pct_error": 1.7559422921421233,
+  "joint_specs_feasible": false,
+  "relaxed_15pct_error_and_5pct_overshoot_alpha2_feasible": true,
+  "explanation": "The input constraint is necessary: peak absolute input cannot be below its initial value. No saturation experiment was run.",
+  "sweep": [
+    {
+      "alpha": 0,
+      "nominal_dyinf_domega": -0.5,
+      "worst_steady_error_percent": 23.809523809523807,
+      "nominal_overshoot_percent": 0,
+      "initial_input": 4
+    },
+    {
+      "alpha": 1,
+      "nominal_dyinf_domega": -0.4,
+      "worst_steady_error_percent": 20.0,
+      "nominal_overshoot_percent": 0.18674427317079892,
+      "initial_input": 5
+    },
+    {
+      "alpha": 2,
+      "nominal_dyinf_domega": -0.25,
+      "worst_steady_error_percent": 13.513513513513514,
+      "nominal_overshoot_percent": 4.3213918263772255,
+      "initial_input": 8
+    },
+    {
+      "alpha": 3,
+      "nominal_dyinf_domega": -0.15384615384615385,
+      "worst_steady_error_percent": 8.771929824561402,
+      "nominal_overshoot_percent": 12.314471107013317,
+      "initial_input": 13
+    }
+  ]
+}

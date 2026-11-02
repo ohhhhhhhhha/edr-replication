@@ -1,7 +1,8 @@
-EDR CHECKPOINT 2: CODE AND EVIDENCE
+EDR FINAL SECTION A: CODE AND EVIDENCE
 
-This package contains the code and evidence for the revised checkpoint 2 report. Scientific
-outputs are preserved from the run saved on 17 October 2026. The original run
+This package contains the code and evidence for final Section A. Main experiment
+outputs are preserved from 17 October 2026. Figure 7 and the final analytical
+extension were completed on 2 November 2026. The original run
 time and environment are in evidence/verification.json.
 
 CODE AND SOURCE OWNERSHIP
@@ -20,11 +21,16 @@ for Reducing Steady-State Error Under System Inconsistency, Mathematical and
 Computational Applications 31(1), 11.
 DOI: https://doi.org/10.3390/mca31010011
 The published paper is included as author_source/EDR_published_paper.pdf (CC BY 4.0).
+author_source/author_sensitivity.py is the unchanged author Experiment 2.
+replication/sensitivity_figure7.py is the project-added Figure 7 reproduction.
+replication/design_analysis.py is the project analytical design extension.
 
 RUN WITH PYTHON 3.12
 Extract the ZIP, open a terminal in this folder, and run:
     python -m pip install -r requirements.txt
     python reproduce.py
+    python replication/sensitivity_figure7.py
+    python replication/design_analysis.py
 
 Run in a copy if you want to keep the supplied 17 October outputs: reproduce.py
 overwrites generated files under evidence/. It does not modify source files.
@@ -71,3 +77,11 @@ values are distinct from the finite 5 s endpoints. Input is in model units.
 
 The console log uses relative source paths in place of local machine paths.
 Scientific outputs and simulation source files are otherwise preserved.
+
+FINAL SENSITIVITY EVIDENCE
+Figure 7: evidence/figure7_replication.png and .pdf; figure7_sensitivity.csv;
+figure7_published_points.csv; figure7_selected_metrics.csv;
+figure7_verification.json. There are 50 gain values, two intervals, 200 endpoint
+simulations and 100 published drawing vertices. The measured curve is a 5 s
+endpoint spread, distinct from analytical equilibrium width and reference error.
+Design extension: evidence/design_constraints.json and analytical_sensitivity.csv.

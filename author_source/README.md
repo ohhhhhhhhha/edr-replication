@@ -4,6 +4,9 @@
 unchanged. Its original filename is `实验一.py` in the
 [author's repository](https://github.com/fylimas/EDR).
 
+`author_sensitivity.py` is the unchanged original Experiment 2 script,
+originally named `实验二.py`. It produces the sensitivity curves in Figure 7.
+
 `EDR_published_paper.pdf` is the published paper, distributed under CC BY 4.0:
 [doi:10.3390/mca31010011](https://doi.org/10.3390/mca31010011).
 

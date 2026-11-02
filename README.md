@@ -8,7 +8,9 @@ Steady-State Error Under System Inconsistency*.
 
 - [项目复现与验证代码 / Project implementation](replication/reproduce.py)
 - [作者原始源码 / Original author code](author_source/author_experiment1.py)
-- [Download the checkpoint 2 code and evidence ZIP](downloads/EDR_Checkpoint_2_Code_and_Evidence.zip)
+- [Download the final Section A code and evidence ZIP](downloads/EDR_Section_A_Code_and_Evidence.zip)
+- [Checkpoint 2 evidence snapshot](downloads/EDR_Checkpoint_2_Code_and_Evidence.zip)
+- [Completed Figure 7 reproduction](replication/sensitivity_figure7.py)
 - [Six-case numerical results](evidence/metrics.csv)
 - [Run metadata and validation checks](evidence/verification.json)
 - [Detailed file guide](README.txt)
@@ -23,7 +25,7 @@ a fresh environment remains to be checked.
 | Location | Ownership and purpose |
 | --- | --- |
 | [`replication/reproduce.py`](replication/reproduce.py) | Project-added reproduction and validation: independent DOP853 integration, closed-form solutions, exported data, paper-curve comparison and the alpha sweep. |
-| [`author_source/`](author_source/) | Fangyuan Li's original simulation script and published paper. The script is preserved unchanged. |
+| [`author_source/`](author_source/) | Fangyuan Li's original experiment scripts and published paper. The scripts are preserved unchanged. |
 | [`reproduce.py`](reproduce.py) | Short launcher for the project implementation; keeps the root-level run command convenient. |
 
 The project script executes the original simulation as its baseline, then checks
@@ -54,6 +56,31 @@ from 12 published curves. Assertions check the numerical differences and data
 export/reload. The original plot-label escapes can produce harmless
 `SyntaxWarning` messages on Python 3.12; these are recorded in the run log.
 
+## Final Section A additions
+
+The Figure 7 sensitivity reproduction was completed on 2 November 2026. It uses
+50 alpha values from 0 to 25 and the frequency intervals [0.5, 1.5] and [0.1, 1.9].
+The 200 endpoint simulations agree with independent integration and analytical
+solutions. All 100 extracted drawing vertices are compared, with a maximum
+width difference of approximately 1.41e-8 rad.
+
+The original script plots the difference between the two endpoint-frequency
+outputs at 5 s. This finite-time spread differs from both the equilibrium
+spread and the worst reference error. At alpha = 0, it underestimates the
+true equilibrium spread by 1.50% and 1.81% for the two frequency intervals.
+
+Run the additional analyses after installing the same requirements:
+
+```sh
+python replication/sensitivity_figure7.py
+python replication/design_analysis.py
+```
+
+The design analysis examines illustrative error, overshoot and input targets.
+It is an analytical extension; no saturation simulation is claimed.
+
+![Figure 7 reproduction and finite-horizon bias](evidence/figure7_replication.png)
+
 ## Replicated outputs
 
 ![Rerun position and velocity responses for the nominal and mismatched plants](evidence/replicated_figures_2_3.png)
@@ -82,6 +109,9 @@ from 0% to 4.32%.
 | Parameter variation | `evidence/alpha_sweep.csv`, `evidence/alpha_sweep_trajectories.csv`, `evidence/alpha_tradeoff.png` |
 | Original simulation outputs | `evidence/author_figures/` |
 | Console output | `evidence/run_log.txt` |
+| Figure 7 reproduction | `evidence/figure7_sensitivity.csv`, `evidence/figure7_published_points.csv`, `evidence/figure7_verification.json` |
+| Selected sensitivity measures | `evidence/figure7_selected_metrics.csv` |
+| Analytical design extension | `evidence/design_constraints.json`, `evidence/analytical_sensitivity.csv` |
 
 The published comparison uses PDF drawing vertices against the closed-form
 solution at their extracted times. It does not provide the author's original
