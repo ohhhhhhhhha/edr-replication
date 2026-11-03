@@ -66,12 +66,26 @@ outputs after the isolated process exits. See the
 
 ```sh
 python replication/compare_evidence.py
+python replication/overlay_published_curves.py
 python replication/design_analysis.py
 ```
 
 The comparison script reads completed B results and archived A/C outputs.
 It does not change parameters or execute author code. The design analysis
 evaluates explicitly illustrative error, overshoot and input targets.
+
+The post-hoc overlay evaluates the saved B states with cubic Hermite interpolation
+at the PDF vertex times. It keeps position residuals in radians and velocity
+residuals in radians/second. It does not fit the model to the publication.
+The overlay, 12 curve-level residuals and 715 vertex comparisons are available
+under `evidence/comparison/`. The timed isolated run on 3 November 2026 took
+about 17.9 seconds including numerical checks and plotting, on the environment
+recorded in `evidence/independent/execution_check.json`.
+
+Inspect the [published-curve overlay](evidence/comparison/published_overlay.png)
+and the [curve-level residual table](evidence/comparison/curve_residuals.csv).
+
+The report's code/data version is [section-a-2026-11-03](https://github.com/ohhhhhhhhha/edr-replication/tree/section-a-2026-11-03).
 
 To rerun the original-author routes separately:
 
@@ -106,6 +120,7 @@ independent model outputs and original-code/drawing comparisons separately.
 
 - `replication/independent_model.py`: primary project equation implementation.
 - `replication/compare_evidence.py`: separate A/B/C comparison stage.
+- `replication/overlay_published_curves.py`: post-hoc overlay and unit-specific residuals.
 - `replication/author_rerun.py`, `replication/author_sensitivity_audit.py`: project wrappers for original-author execution and graphic audits.
 - `replication/design_analysis.py`: analytical design extension.
 - `author_source/`: unchanged author scripts and published paper.

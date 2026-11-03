@@ -15,6 +15,7 @@ RUN WITH PYTHON 3.12
     python -m pip install -r requirements.txt
     python reproduce.py
     python replication/compare_evidence.py
+    python replication/overlay_published_curves.py
     python replication/design_analysis.py
 
 B outputs are under evidence/independent/. The comparison stage reads these
@@ -60,7 +61,15 @@ evidence/independent/verification.json and additional_checks.csv: solver checks.
 evidence/comparison/endpoint_comparison.csv: A/B/C endpoints and analytical values.
 evidence/comparison/author_vs_independent.csv: full-grid A/B differences.
 evidence/comparison/figure7_comparison.csv: explicitly labelled Figure 7 audit.
+evidence/comparison/published_overlay.png: saved B trajectories plus PDF vertices.
+evidence/comparison/curve_residuals.csv: per-panel, per-curve B-A and B-C residuals.
+evidence/comparison/overlay_vertices.csv: all 715 post-hoc vertex comparisons.
+evidence/comparison/overlay_summary.json: interpolation method and separate units.
 evidence/design_constraints.json: illustrative analytical design constraints.
+
+VERSION
+This report snapshot is tagged section-a-2026-11-03 in the project repository.
+The isolated run timing and platform are in evidence/independent/execution_check.json.
 
 Archived A/C results and their original plots remain directly under evidence/.
 Original source is unchanged. Rerunning a route replaces that route's generated

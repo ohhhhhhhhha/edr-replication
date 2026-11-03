@@ -1,0 +1,13 @@
+{
+  "comparison": "B solution versus C PDF vertices, after independent model generation",
+  "interpolation": "Cubic Hermite from saved B values and derivatives; residual includes interpolation and PDF precision.",
+  "main_grid_count": 1000,
+  "pdf_vertices": 715,
+  "panel_count": 4,
+  "curve_count": 12,
+  "max_position_B_minus_A": 2.975519830528128e-11,
+  "max_velocity_B_minus_A": 1.528506210490832e-10,
+  "max_position_B_minus_C": 9.12592967861059e-09,
+  "max_velocity_B_minus_C": 4.281074228451587e-08,
+  "interpretation": "Post-hoc artifact comparison, not an independent experimental dataset."
+}

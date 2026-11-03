@@ -3,10 +3,12 @@ from pathlib import Path
 from datetime import datetime, timezone
 import argparse
 import json
+import platform
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser()
@@ -23,8 +25,10 @@ with tempfile.TemporaryDirectory(prefix='edr-independent-') as temp:
     assert initial_files==['replication/independent_model.py','reproduce.py']
     command=[sys.executable,'reproduce.py','--output-dir','outputs']
     if args.extra_deps:command += ['--extra-deps',str(args.extra_deps.resolve())]
+    start=time.perf_counter()
     result=subprocess.run(command,cwd=isolated,capture_output=True,text=True,
                           encoding='utf-8',errors='replace')
+    elapsed=time.perf_counter()-start
     if result.returncode:
         print(result.stdout)
         print(result.stderr,file=sys.stderr)
@@ -43,6 +47,9 @@ with tempfile.TemporaryDirectory(prefix='edr-independent-') as temp:
         initial_working_directory_files=initial_files,
         author_scripts_present=False,pdf_present=False,reference_results_present=False,
         child_exit_code=result.returncode,matching_csv_files=checked,
+        elapsed_seconds=elapsed,python_version=platform.python_version(),
+        platform=platform.platform(),architecture=platform.machine(),
+        timing_scope='Child process including model, checks and plotting; excludes dependency installation.',
         comparison_timing='Parent compares results only after the isolated child exits.',
         environment='Existing installed numerical libraries; this is execution isolation, not a clean dependency installation.')
 (ROOT/'evidence/independent/execution_check.json').write_text(json.dumps(record,indent=2),encoding='utf-8')
