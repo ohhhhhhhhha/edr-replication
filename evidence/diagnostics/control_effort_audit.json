@@ -1,0 +1,48 @@
+{
+  "cases": 12,
+  "samples_per_case": 2001,
+  "horizon_seconds": 5.0,
+  "grid_spacing_seconds": 0.0025,
+  "all_sampled_peaks_at_zero": true,
+  "initial_equals_sampled_peak": true,
+  "interpretation": "Finite-grid observation only. No assertion about the continuous-time maximum over all t >= 0.",
+  "actuator_bound": "For any trajectory, sup_t |u(t)| >= |u(0)|; the design infeasibility needs only this necessary condition.",
+  "gain_summary": [
+    {
+      "alpha": 0.0,
+      "initial_input": 4.0,
+      "sampled_peak_abs_input": 4.0,
+      "peak_times": [
+        0.0
+      ],
+      "cases": 3
+    },
+    {
+      "alpha": 1.0,
+      "initial_input": 5.0,
+      "sampled_peak_abs_input": 5.0,
+      "peak_times": [
+        0.0
+      ],
+      "cases": 3
+    },
+    {
+      "alpha": 2.0,
+      "initial_input": 8.0,
+      "sampled_peak_abs_input": 8.0,
+      "peak_times": [
+        0.0
+      ],
+      "cases": 3
+    },
+    {
+      "alpha": 3.0,
+      "initial_input": 13.0,
+      "sampled_peak_abs_input": 13.0,
+      "peak_times": [
+        0.0
+      ],
+      "cases": 3
+    }
+  ]
+}

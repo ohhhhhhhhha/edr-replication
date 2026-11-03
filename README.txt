@@ -16,6 +16,7 @@ RUN WITH PYTHON 3.12
     python reproduce.py
     python replication/compare_evidence.py
     python replication/overlay_published_curves.py
+    python replication/audit_control_effort.py
     python replication/design_analysis.py
 
 B outputs are under evidence/independent/. The comparison stage reads these
@@ -66,9 +67,12 @@ evidence/comparison/curve_residuals.csv: per-panel, per-curve B-A and B-C residu
 evidence/comparison/overlay_vertices.csv: all 715 post-hoc vertex comparisons.
 evidence/comparison/overlay_summary.json: interpolation method and separate units.
 evidence/design_constraints.json: illustrative analytical design constraints.
+evidence/diagnostics/control_effort_audit.csv and .json: initial inputs,
+sampled peaks and peak times for the twelve gain-study cases. This is a
+finite-grid audit on [0, 5] s, not a global continuous-time peak proof.
 
 VERSION
-This report snapshot is tagged section-a-2026-11-03 in the project repository.
+The final report snapshot is tagged section-a-final-2026-11-03 in the project repository.
 The isolated run timing and platform are in evidence/independent/execution_check.json.
 
 Archived A/C results and their original plots remain directly under evidence/.

@@ -67,6 +67,7 @@ outputs after the isolated process exits. See the
 ```sh
 python replication/compare_evidence.py
 python replication/overlay_published_curves.py
+python replication/audit_control_effort.py
 python replication/design_analysis.py
 ```
 
@@ -85,7 +86,15 @@ recorded in `evidence/independent/execution_check.json`.
 Inspect the [published-curve overlay](evidence/comparison/published_overlay.png)
 and the [curve-level residual table](evidence/comparison/curve_residuals.csv).
 
-The report's code/data version is [section-a-2026-11-03](https://github.com/ohhhhhhhhha/edr-replication/tree/section-a-2026-11-03).
+The final report's code/data version is [section-a-final-2026-11-03](https://github.com/ohhhhhhhhha/edr-replication/tree/section-a-final-2026-11-03).
+
+The input audit distinguishes the analytical initial command from the maximum
+on the saved time grid. All 12 gain-study cases have 2001 samples on [0, 5] s;
+their sampled maxima occur at t = 0 and equal 4, 5, 8 and 13 for alpha = 0, 1,
+2 and 3. These are finite-grid observations. The design constraint uses only
+the necessary inequality sup |u(t)| >= |u(0)|, without assuming a global peak
+at the initial instant. The per-case peak times and signed minima are in
+[control_effort_audit.csv](evidence/diagnostics/control_effort_audit.csv).
 
 To rerun the original-author routes separately:
 
@@ -121,11 +130,13 @@ independent model outputs and original-code/drawing comparisons separately.
 - `replication/independent_model.py`: primary project equation implementation.
 - `replication/compare_evidence.py`: separate A/B/C comparison stage.
 - `replication/overlay_published_curves.py`: post-hoc overlay and unit-specific residuals.
+- `replication/audit_control_effort.py`: initial-input and finite-grid peak audit.
 - `replication/author_rerun.py`, `replication/author_sensitivity_audit.py`: project wrappers for original-author execution and graphic audits.
 - `replication/design_analysis.py`: analytical design extension.
 - `author_source/`: unchanged author scripts and published paper.
 - `evidence/independent/`: B outputs and numerical checks.
 - `evidence/comparison/`: explicitly labelled cross-source results.
+- `evidence/diagnostics/`: post-processing of the B control-input trajectories.
 - Files directly under `evidence/`: archived author-route, graphic-audit and earlier extension outputs.
 
 ## Sources

@@ -79,7 +79,7 @@ for panel,ax in zip(['2a','2b','3a','3b'],axes.ravel()):
     cases=[(1.,0.),(1.,2.)] if panel.startswith('2') else [(.5,0.),(.5,2.),(1.5,0.),(1.5,2.)]
     for omega,alpha in cases:
         t,values,tc,paper=curves[panel,omega,alpha]
-        label=('Baseline' if alpha==0 else 'EDR, α = 2') if panel.startswith('2') else f"{'Base' if alpha==0 else 'EDR'} ω = {omega}"
+        label=('Baseline' if alpha==0 else 'EDR, α = 2') if panel.startswith('2') else f"{'Baseline' if alpha==0 else 'EDR'} ω = {omega}"
         style='--' if omega==1.5 else '-'
         ax.plot(t,values,color=colors[alpha],ls=style,label=label,lw=1.35)
         ax.plot(tc[::3],paper[::3],ls='none',marker='o',ms=3.0,mfc='none',mec=colors[alpha],mew=.7)
